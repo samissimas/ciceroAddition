@@ -1,4 +1,16 @@
-###function which fills an empty data frame with the given peak data
+#'Peak Dataframe Builder
+#'
+#'function which fills empty data frame with given peak data
+#'
+#' @param uniquePeaks the vector containing uniquepeaks from a Conn file
+#' @param peaks.data the dataframe which you wish to add a column too
+#'
+#' @return the same dataframe now filled with peak data
+#'
+#' @examples
+#' peak.data = buildDF(uniquePeaks, peak.data)
+#'
+#' @export
 buildDF <- function(uniquePeaks, peaks.data){
   vectorsize <- length(uniquePeaks)
   i = 1
