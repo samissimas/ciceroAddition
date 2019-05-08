@@ -1,4 +1,17 @@
-###function which adds up all connections as weighted values over a threshold
+#'Calculate Total Connections Weighted
+#'
+#'Calculate total weight of connections for each peak in a given conns file over a threshold
+#'
+#' @param SUMpeaksblend.data a data frame containting all the unique peaks
+#' @param KO_conns a conns file
+#' @param thresh the decimal certainty above which you will accept peaks
+#'
+#' @return a dataframe containing the results of the conn weights
+#'
+#' @examples
+#' SUMpeaksKO.data = connblendInt(SUMpeaksblend.data, KO_conns, thresh)
+#'
+#' @export
 connblendweight <- function(SUMpeaksblend.data, KO_conns, thresh){
   SUMpeaksKO.data <- addColumnDF(SUMpeaksblend.data)
   SUMpeaksKO.data <- addColumnDF_character(SUMpeaksKO.data)

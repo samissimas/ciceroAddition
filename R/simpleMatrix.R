@@ -1,11 +1,28 @@
-###Creates a matrix which reduces dimension by a given factor and cuts around certain give values
-simpleMatrix <- function(KO_conns, uniquepeaks, dim, thresh, startNum, endNum){
+#'Creates a Reduced Graphable Matrix of Conns values
+#'
+#'Creates a reduced graphable matrix based on a given conns file
+#'
+#' @param KO_conns a conns file
+#' @param dim the amount of peaks you want in each bin
+#' @param startNum the start coordinate of your desired region
+#' @param endNum the end coordinate of your desired region
+#'
+#' @return a reduced matrix filled with connsInt
+#'
+#' @examples
+#' matrix = simpleMatrix(KO_conns, 70, 1200, 300000000)
+#'
+#' @export
+simpleMatrix <- function(KO_conns, dim, thresh, startNum, endNum){
 
+  
+  
   if(endNum<=startNum)
   {
     print("End must be greater than start")
     break
   }
+  uniquepeaks <- unique_peak(KO_conns)
   UP.data = buildDFmatrix(uniquepeaks)
 
   startCount = 0

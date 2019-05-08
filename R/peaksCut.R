@@ -1,4 +1,18 @@
-###Creates a peak file which reduces dimension by a given factor and cuts around certain give values
+#'Peak Cutter and Reducer
+#'
+#'creates a dataframe which mirrors a reduced matrix to help in interpretation
+#'
+#' @param uniquepeaks a vector containing all the unique files in the conn file used to generate the simple matrix
+#' @param dim the amount of peaks you want in each bin
+#' @param startNum the start coordinate of your desired region
+#' @param endNum the end coordinate of your desired region
+#'
+#' @return a dataframe containing the peak information of your reduced peaks
+#'
+#' @examples
+#' peaks.data = peaksCut(uniquepeaks, 70, 1200, 300000000)
+#'
+#' @export
 peaksCut <- function(uniquepeaks, dim, startNum, endNum){
 
   if(endNum<=startNum)

@@ -1,4 +1,15 @@
-###function which fills an empty data frame with the given peak data from a bed
+#'Peak Bed Dataframe Builder
+#'
+#'fills an empty data frame with only peak data
+#'
+#' @param uniquePeaks a vector containing all uniquepeaks
+#'
+#' @return a new dataframe filled with given peak data
+#'
+#' @examples
+#' peak.data = buildDF_bed(uniquePeaks)
+#'
+#' @export
 buildDF_bed <- function(uniquePeaks){
   vectorsize <- dim(uniquePeaks)[1]
   i = 1

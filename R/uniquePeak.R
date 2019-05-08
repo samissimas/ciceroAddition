@@ -1,9 +1,15 @@
-#   function which simplifies the connections matrix into a
-#   matrix only containing the unique peaks
-
-#   Build and Reload Package:  'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+#'Unique Peak Vector
+#'
+#'takes every unique peak from a conns file and returns a vector of them
+#'
+#' @param conns a conns file
+#'
+#' @return a vector containing the peaks
+#'
+#' @examples
+#' vector = unique_peak(conns)
+#'
+#' @export
 unique_peak <- function(conns){
 
   size <- dim(conns)

@@ -1,4 +1,16 @@
-###compare two conns files
+#'Connection Comparision
+#'
+#'compares two Conns files by peak similarity and total connections
+#'
+#' @param WT_conns a conns file
+#' @param KO_conns a conns file
+#'
+#' @return a dataframe containing the results of the comparision
+#'
+#' @examples
+#' results.data = compareConns(WT_conns, KO_conns)
+#'
+#' @export
 compareConns <- function(WT_conns, KO_conns)
 {
   name1="K"

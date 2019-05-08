@@ -1,11 +1,15 @@
-#   function which takes the combined cicero ooutput string
-#   and returns a vector
-#   containing the end, start, and chromosone of a peak, using
-#   spaces
-
-#   Build and Reload Package:  'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+#'Cicero Output Splitter Space
+#'
+#'takes tab dilemited output string and returns a vector with: end, start, chromosone
+#'
+#' @param cicString a string in the form Chr' ''''''' ''''''''
+#'
+#' @return a vector containg start, end, and chromosone
+#'
+#' @examples
+#' vector = cicero_split(cicString)
+#'
+#' @export
 cicero_split_space <- function(cicString){
   chromnum <- regexpr(" ",cicString)
   chrom <- substr(cicString, 1, chromnum-1)

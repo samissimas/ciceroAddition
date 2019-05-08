@@ -1,9 +1,15 @@
-#   function which takes the comma seperated string of
-
-#   connections and returns a cicero split list
-#   Build and Reload Package:  'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+#'Create Peak Dataframe from List
+#'
+#'given a comma seperated list of peaks, creates a peak dataframe
+#'
+#' @param cicString the string containing a list of peaks
+#'
+#' @return a peak dataframe
+#'
+#' @examples
+#' peaks.data = list_string(cicString)
+#'
+#' @export
 list_split <- function(cicString){
   string = cicString
   peakvector = unlist(strsplit(string, split=","))

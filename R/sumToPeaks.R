@@ -1,4 +1,15 @@
-###function which turns a sum peak dataframe back into a peak vector
+#'Dataframe to Peak Vector
+#'
+#'turns a sum peak dataframe back into a peak vector
+#'
+#' @param SUM.data a peak dataframe
+#'
+#' @return a vector containing the peaks
+#'
+#' @examples
+#' vector = sumtoPeaks(SUM.data)
+#'
+#' @export
 sumtoPeaks <- function(SUM.data){
   length = dim(SUM.data)[1]
   peaks <- vector(mode="character", dim(SUM.data)[1])

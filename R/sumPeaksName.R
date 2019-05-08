@@ -1,6 +1,22 @@
-###function which combines two peak files
-sumPeaksName <- function(WTpeaks.data, KOpeaks.data, vectorsizeKO, firstString, secondString){
+#'Peak DataFrame Combination
+#'
+#'creates a dataframe which adds two peak dataframe by combining like and independant peaks and marks each as such
+#'
+#' @param WTpeaks.data a peak file containing the peaks of one conn file
+#' @param KOpeaks.data a peak file containing the peaks of one conn file 
+#' @param firstString the character you want attached with the first conns file
+#' @param secondString the character you want attached with the second conns file
+#'
+#' @return a dataframe containing the peak information of your signifigant peaks
+#'
+#' @examples
+#' peaks.data = sigPeakFinder(SUM.data, 20, 50)
+#'
+#' @export
+sumPeaksName <- function(WTpeaks.data, KOpeaks.data, firstString, secondString){
   SUMpeaks.data = WTpeaks.data
+  
+  
 
   length = dim(SUMpeaks.data)[1]
   location <- rep(firstString, length)
@@ -24,6 +40,7 @@ sumPeaksName <- function(WTpeaks.data, KOpeaks.data, vectorsizeKO, firstString, 
 
   i=1
   j=1
+  vectorsizeKO <- length(KOpeaks.data)
   while(i <= vectorsizeKO)
   {
     row = KOpeaks.data[i,]

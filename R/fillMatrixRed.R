@@ -1,4 +1,18 @@
-###fill a reduced matrix
+#'Fill A Matrix With Conns
+#'
+#'Fills a graphable matrix based on a given peakvector
+#'
+#' @param KO_conns a conns file
+#' @param emptymatrix an empty matrix of the same dimension as the peaks vector
+#' @param peaksVector a vector of the peak bins that the conns will be sorted into
+#' @param thresh the threshold over which a connection will be accepted
+#'
+#' @return a completed matrix filled with connsInt
+#'
+#' @examples
+#' matrix = fillMatrixRed(KO_conns, emptymatrix, peaksVector, thresh)
+#'
+#' @export
 fillMatrixRed <- function(KO_conns, emptymatrix, peaksVector, thresh){
   lengthMat = dim(KO_conns)[1]
   i= 1

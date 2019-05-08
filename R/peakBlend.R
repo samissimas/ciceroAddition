@@ -1,4 +1,15 @@
-###function which combines overlapping peaks
+#'Peak Blender
+#'
+#'combines overlapping peaks in a given peak dataframe
+#'
+#' @param SUMpeaks.data a peak dataframe
+#'
+#' @return a new peak dataframe with combined peaks at overlapping areas
+#'
+#' @examples
+#' peaks.data = peakBlend(SUMpeaks.data)
+#'
+#' @export
 peakBlend <- function(SUMpeaks.data){
   i=1
   length = dim(SUMpeaks.data)[1]
