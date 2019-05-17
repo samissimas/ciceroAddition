@@ -288,7 +288,7 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
     finalMatrix = finalMatrix[,-1]
   }
   
-  if(endFound != TRUE)
+  if(endFound == TRUE)
   {
     finalMatrix = finalMatrix[-dim(finalMatrix)[1],]
     finalMatrix = finalMatrix[,-dim(finalMatrix)[2]]
