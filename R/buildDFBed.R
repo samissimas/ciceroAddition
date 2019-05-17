@@ -11,7 +11,7 @@
 #'
 #' @export
 buildDF_bed <- function(uniquePeaks){
-  vectorsize <- dim(uniquePeaks)[1]
+  vectorsize <- length(uniquePeaks)
   i = 1
   chr <- rep(NA, vectorsize)
   start <- rep(NA, vectorsize)
@@ -21,7 +21,7 @@ buildDF_bed <- function(uniquePeaks){
 
   while(i <= vectorsize)
   {
-    loopvector <- cicero_split_space(uniquePeaks[i, 1])
+    loopvector <- cicero_split_space(uniquePeaks[i])
 
     cicString = loopvector[1]
     chromnum <- regexpr("r",cicString)
