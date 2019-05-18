@@ -243,4 +243,6 @@ sortConnections <- function(loop.data, bed){
     }
   }
   
+  return(loop.data)
+  
 }
