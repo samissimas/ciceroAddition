@@ -9,7 +9,7 @@ simpleMatrixEven(KO_conns, dim, thresh, startNum, endNum)
 \arguments{
 \item{KO_conns}{a conns file}
 
-\item{dim}{the amount of peaks you want in each bin}
+\item{dim}{the size of each bin}
 
 \item{startNum}{the start coordinate of your desired region}
 

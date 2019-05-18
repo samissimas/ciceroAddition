@@ -3,7 +3,7 @@
 #'Creates a reduced graphable matrix based on a given conns file
 #'
 #' @param KO_conns a conns file
-#' @param dim the amount of peaks you want in each bin
+#' @param dim the size of each bin
 #' @param startNum the start coordinate of your desired region
 #' @param endNum the end coordinate of your desired region
 #'
@@ -151,7 +151,6 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
   }
   
   uniquepeaks = sumtoPeaks(UP3.data)
-  print(UP3.data)
   fullLength = as.numeric(endNum) - as.numeric(startNum)
   runSize = floor((as.numeric(fullLength)/as.numeric(dim)))
   if(runSize<2)
