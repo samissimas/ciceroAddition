@@ -4,12 +4,16 @@
 \alias{connBlender}
 \title{Blend two conns files}
 \usage{
-connBlender(KO_conns, WT_conns)
+connBlender(KO_conns, WT_conns, namefirst, namesecond)
 }
 \arguments{
 \item{KO_conns}{the first dataframe you want to combine}
 
 \item{WT_conns}{the second dataframe you want to combine}
+
+\item{namefirst}{the label you want to give to the first conns file, i.e. "A"}
+
+\item{namesecond}{the label you want to give to the second conns file, i.e. "B"}
 }
 \value{
 a blended dataframe

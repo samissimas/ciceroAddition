@@ -4,6 +4,8 @@
 #'
 #' @param KO_conns the first dataframe you want to combine
 #' @param WT_conns the second dataframe you want to combine
+#' @param namefirst the label you want to give to the first conns file, i.e. "A"
+#' @param namesecond the label you want to give to the second conns file, i.e. "B"
 #' 
 #' @return a blended dataframe
 #'
@@ -11,7 +13,7 @@
 #' loop.data = sortConnections(loop.data, bed)
 #'
 #' @export
-connBlender <- function(KO_conns, WT_conns){
+connBlender <- function(KO_conns, WT_conns, namefirst, namesecond){
   
   uniquePeaksKO = unique_peak(KO_conns) 
   
@@ -30,7 +32,7 @@ connBlender <- function(KO_conns, WT_conns){
   KOpeaks.data <- buildDF(uniquePeaksKO, KOpeaks.data)
   WTpeaks.data <- buildDF(uniquePeaksWT, WTpeaks.data)
   
-  SUMpeaks.data = sumPeaksName(WTpeaks.data, KOpeaks.data, vectorsizeKO, "W","K")
+  SUMpeaks.data = sumPeaksName(WTpeaks.data, KOpeaks.data, namefirst, namesecond)
   
   print("sum peaks done")
   
