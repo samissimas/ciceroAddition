@@ -40,7 +40,7 @@ sumPeaksName <- function(WTpeaks.data, KOpeaks.data, firstString, secondString){
 
   i=1
   j=1
-  vectorsizeKO <- length(KOpeaks.data)
+  vectorsizeKO <- size(KOpeaks.data)[1]
   while(i <= vectorsizeKO)
   {
     row = KOpeaks.data[i,]
