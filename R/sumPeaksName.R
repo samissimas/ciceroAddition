@@ -19,12 +19,12 @@ sumPeaksName <- function(WTpeaks.data, KOpeaks.data, firstString, secondString){
   
 
   length = dim(SUMpeaks.data)[1]
-  location <- rep(firstString, length)
+  location <- rep(secondString, length)
   SUMpeaks.data <- data.frame(SUMpeaks.data, location)
   SUMpeaks.data <- data.frame(lapply(SUMpeaks.data, as.character), stringsAsFactors=FALSE)
 
   length2 = dim(KOpeaks.data)[1]
-  location <- rep(secondString, length2)
+  location <- rep(firstString, length2)
   KOpeaks.data <- data.frame(KOpeaks.data, location)
   KOpeaks.data <- data.frame(lapply(KOpeaks.data, as.character), stringsAsFactors=FALSE)
 
