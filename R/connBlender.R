@@ -7,10 +7,10 @@
 #' @param namefirst the label you want to give to the first conns file, i.e. "A"
 #' @param namesecond the label you want to give to the second conns file, i.e. "B"
 #' 
-#' @return a blended dataframe
+#' @return a combined peak file
 #'
 #' @examples
-#' loop.data = sortConnections(loop.data, bed)
+#' SUMpeaksblend.data = connBlender(KO_conns, WT_conns, namefirst, namesecond)
 #'
 #' @export
 connBlender <- function(KO_conns, WT_conns, namefirst, namesecond){

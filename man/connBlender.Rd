@@ -16,12 +16,12 @@ connBlender(KO_conns, WT_conns, namefirst, namesecond)
 \item{namesecond}{the label you want to give to the second conns file, i.e. "B"}
 }
 \value{
-a blended dataframe
+a combined peak file
 }
 \description{
 Takes in two conns files and combines like peaks and adds peaks not included in each others
 }
 \examples{
-loop.data = sortConnections(loop.data, bed)
+SUMpeaksblend.data = connBlender(KO_conns, WT_conns, namefirst, namesecond)
 
 }
