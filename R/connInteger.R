@@ -8,6 +8,8 @@
 #' @param mm10.chr the genome file you are referencing to create the conns files
 #' @param namefirst the label you want to give to the first conns file, i.e. "A"
 #' @param namesecond the label you want to give to the second conns file, i.e. "B"
+#' @param thresh the threshold for peaks you are interested in
+#' @param changePerc the percent difference between Ko and WT conns you want to use as a threshold
 #' 
 #' @return a blended dataframe
 #'
@@ -15,13 +17,15 @@
 #' loop.data = sortConnections(loop.data, bed)
 #'
 #' @export
-connInteger <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond){
+connInteger <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc){
   
   if(length(vector)==0)
   {
     print("You must have a vector with real numbers corresponding to chromosones you are interested in")
     
   }
+  
+  fullGenomeSorted <- data.frame()
   
   for(i in vector)
   {
@@ -35,8 +39,28 @@ connInteger <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirs
     print("Beginning to blend conns files")
     SUMpeaks.data = connBlender(KO_conns, WT_conns, namefirst, namesecond)
     
-    return(SUMpeaks.data)
+    SUMpeaksKO.data <- connblendInt(SUMpeaks.data, KO_conns, .2)
+    
+    print("KO connections tabulated")
+    
+    SUMpeaksWT.data <- connblendInt(SUMpeaks.data, WT_conns, .2)
+    
+    print("WT connections tabulated")
+    
+    colnames(SUMpeaksKO.data)[colnames(SUMpeaksKO.data)=="access"] <- "KO_access"
+    colnames(SUMpeaksWT.data)[colnames(SUMpeaksWT.data)=="access"] <- "WT_access"
+    colnames(SUMpeaksKO.data)[colnames(SUMpeaksKO.data)=="connections"] <- "KO_connections"
+    colnames(SUMpeaksWT.data)[colnames(SUMpeaksWT.data)=="connections"] <- "WT_connections"
+    
+    
+    SUMpeaksPreSort.data <- cbind(SUMpeaksKO.data, SUMpeaksWT.data[!names(SUMpeaksKO.data) %in% names(SUMpeaksWT.data)])
+    
+    SUMpeaksPreSort.data = SUMpeaksPreSort.data[,c(1,2,3,4,5,7,6,8)]
+    
+    SUMpeaksSorted.data <- sigPeakFinder(SUMpeaksPreSort.data, thresh, changePerc)
+    fullGenomeSorted  = rbind(fullGenomeSorted, SUMpeaksSorted.data)
+    
   }
-  
+  return(fullGenomeSorted)
   
 }

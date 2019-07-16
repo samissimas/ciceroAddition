@@ -5,7 +5,7 @@
 \title{Create a conns files}
 \usage{
 connInteger(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
-  namesecond)
+  namesecond, thresh, changPerc)
 }
 \arguments{
 \item{WT_cicero_cds}{the first cds you want to convert to a conns file}
@@ -19,6 +19,10 @@ connInteger(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
 \item{namefirst}{the label you want to give to the first conns file, i.e. "A"}
 
 \item{namesecond}{the label you want to give to the second conns file, i.e. "B"}
+
+\item{thresh}{the threshold for peaks you are interested in}
+
+\item{changePerc}{the percent difference between Ko and WT conns you want to use as a threshold}
 }
 \value{
 a blended dataframe

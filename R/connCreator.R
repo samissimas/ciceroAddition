@@ -16,7 +16,7 @@ connCreator <- function(WT_cicero_cds, number, mm10.chr){
   
   charcount = as.character(number)
   j = paste("chr",charcount, sep = "")
-  sample_genome <- subset(mm10.chr, V1==number)
+  sample_genome <- subset(mm10.chr, V1==j)
   WT_conns <- run_cicero(WT_cicero_cds, sample_genome)
   return(WT_conns)
   
