@@ -1,4 +1,4 @@
-#'Create a conns files
+#'Create a final genome wide sorted dataframe of connections
 #'
 #'Takes in a cds files and creates a conns files
 #'
@@ -11,13 +11,13 @@
 #' @param thresh the threshold for peaks you are interested in
 #' @param changePerc the percent difference between Ko and WT conns you want to use as a threshold
 #' 
-#' @return a blended dataframe
+#' @return a completed, sorted, and eleaborated dataframe
 #'
 #' @examples
-#' loop.data = sortConnections(loop.data, bed)
+#' SUM.data = connWeight(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc)
 #'
 #' @export
-connInteger <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc){
+connWeight <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc){
   
   if(length(vector)==0)
   {
@@ -38,11 +38,11 @@ connInteger <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirs
     print("Beginning to blend conns files")
     SUMpeaks.data = connBlender(KO_conns, WT_conns, namefirst, namesecond)
     
-    SUMpeaksKO.data <- connblendInt(SUMpeaks.data, KO_conns, .2)
+    SUMpeaksKO.data <- connblendweight(SUMpeaks.data, KO_conns, .2)
     
     print("KO connections tabulated")
     
-    SUMpeaksWT.data <- connblendInt(SUMpeaks.data, WT_conns, .2)
+    SUMpeaksWT.data <- connblendweight(SUMpeaks.data, WT_conns, .2)
     
     print("WT connections tabulated")
     
