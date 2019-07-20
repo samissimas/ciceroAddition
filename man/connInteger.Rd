@@ -5,7 +5,7 @@
 \title{Create a conns files}
 \usage{
 connInteger(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
-  namesecond, thresh, changPerc)
+  namesecond, thresh, changPerc, viablethresh)
 }
 \arguments{
 \item{WT_cicero_cds}{the first cds you want to convert to a conns file}
@@ -21,6 +21,8 @@ connInteger(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
 \item{namesecond}{the label you want to give to the second conns file, i.e. "B"}
 
 \item{thresh}{the threshold for peaks you are interested in}
+
+\item{viablethresh}{the threshold for peaks you consider viable}
 
 \item{changePerc}{the percent difference between Ko and WT conns you want to use as a threshold}
 }

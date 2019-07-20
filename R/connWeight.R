@@ -10,6 +10,7 @@
 #' @param namesecond the label you want to give to the second conns file, i.e. "B"
 #' @param thresh the threshold for peaks you are interested in
 #' @param changePerc the percent difference between Ko and WT conns you want to use as a threshold
+#' @param viablethresh the threshold for peaks you consider viable
 #' 
 #' @return a completed, sorted, and eleaborated dataframe
 #'
@@ -17,7 +18,7 @@
 #' SUM.data = connWeight(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc)
 #'
 #' @export
-connWeight <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc){
+connWeight <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc, viablethresh){
   
   if(length(vector)==0)
   {
@@ -38,11 +39,11 @@ connWeight <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst
     print("Beginning to blend conns files")
     SUMpeaks.data = connBlender(KO_conns, WT_conns, namefirst, namesecond)
     
-    SUMpeaksKO.data <- connblendweight(SUMpeaks.data, KO_conns, .2)
+    SUMpeaksKO.data <- connblendweight(SUMpeaks.data, KO_conns, viablethresh)
     
     print("KO connections tabulated")
     
-    SUMpeaksWT.data <- connblendweight(SUMpeaks.data, WT_conns, .2)
+    SUMpeaksWT.data <- connblendweight(SUMpeaks.data, WT_conns, viablethresh)
     
     print("WT connections tabulated")
     
