@@ -18,7 +18,7 @@
 #' loop.data = sortConnections(loop.data, bed)
 #'
 #' @export
-connInteger <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc, viablethresh){
+connInteger <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changePerc, viablethresh){
   
   if(length(vector)==0)
   {
