@@ -151,41 +151,37 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
   }
   
   uniquepeaks = sumtoPeaks(UP3.data)
+  print(UP3.data)
+  
   fullLength = as.numeric(endNum) - as.numeric(startNum)
-  runSize = floor((as.numeric(fullLength)/as.numeric(dim)))
+  runSize = ceiling((as.numeric(fullLength)/as.numeric(dim)))
+  print(runSize)
+  ###if((locaterBelow(uniquepeaks, endNUM)-locaterBelow(uniquepeaks,startNum)) < runSize)
+  ###{
+  ###print("The dimension is too large. There will be empty columns and rows within the final matrix")
+  ###break
+  
+  ###}
   if(runSize<2)
   {
     print("Dimension Too Large: Must Be Half Or Less Of Unique Peak Length")
     break
     
   }
-  else if(runSize >= 2)
-  {
-    if(fullLength%%dim == 0)
-    {
-      mm <- matrix(0, runSize, runSize)
-    }
-    else if(fullLength%%dim != 0)
-    {
-      mm <- matrix(0, runSize+1, runSize+1)
-      runSize = runSize+1
-    }
-  }
-  print("Built Matrix")
   
-  chr <- rep(NA, runSize)
-  start <- rep(NA, runSize)
-  end <- rep(NA, runSize)
-  peaks.data <- data.frame(chr, start, end)
   
   
   if(startCount == 0 & endFound == TRUE)
   {
+    chr <- rep(NA, runSize+1)
+    start <- rep(NA, runSize+1)
+    end <- rep(NA, runSize+1)
+    peaks.data <- data.frame(chr, start, end)
+    
     loopvector <- cicero_split(uniquepeaks[length(uniquepeaks)])
-    peaks.data[runSize,1] = loopvector[1]
-    peaks.data[runSize,2] = loopvector[2]
-    peaks.data[runSize,3] = loopvector[3]
-    runSize = runSize - 1
+    peaks.data[runSize+1,1] = loopvector[1]
+    peaks.data[runSize+1,2] = loopvector[2]
+    peaks.data[runSize+1,3] = loopvector[3]
     i=1
     cutter = startNum + dim
     locator = locaterBelow(uniquepeaks, cutter)
@@ -193,36 +189,49 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
   }
   else if(startCount != 0 & endFound == FALSE)
   {
+    chr <- rep(NA, runSize+1)
+    start <- rep(NA, runSize+1)
+    end <- rep(NA, runSize+1)
+    peaks.data <- data.frame(chr, start, end)
+    
     loopvector <- cicero_split(uniquepeaks[1])
     peaks.data[1,1] = loopvector[1]
     peaks.data[1,2] = loopvector[2]
     peaks.data[1,3] = loopvector[3]
     i=2
+    runSize = runSize + 1
     cutter = startNum + dim
     locator = locaterBelow(uniquepeaks, cutter)
-    locator2 = 2
+    locator2 = 1
   }
   else if(startCount != 0 & endFound == TRUE)
   {
+    chr <- rep(NA, runSize+2)
+    start <- rep(NA, runSize+2)
+    end <- rep(NA, runSize+2)
+    peaks.data <- data.frame(chr, start, end)
     loopvector <- cicero_split(uniquepeaks[1])
     peaks.data[1,1] = loopvector[1]
     peaks.data[1,2] = loopvector[2]
     peaks.data[1,3] = loopvector[3]
     
     loopvector <- cicero_split(uniquepeaks[length(uniquepeaks)])
-    peaks.data[runSize,1] = loopvector[1]
-    peaks.data[runSize,2] = loopvector[2]
-    peaks.data[runSize,3] = loopvector[3]
+    peaks.data[runSize+2,1] = loopvector[1]
+    peaks.data[runSize+2,2] = loopvector[2]
+    peaks.data[runSize+2,3] = loopvector[3]
     
-    runSize = runSize - 1
+    runSize = runSize + 1
     i=2
     cutter = startNum + dim
     locator = locaterBelow(uniquepeaks, cutter)
-    locator2 = 2
+    locator2 = 1
     
   }
   else if(startCount == 0 & endFound == FALSE)
   {
+    chr <- rep(NA, runSize)
+    start <- rep(NA, runSize)
+    end <- rep(NA, runSize)
     i=1
     cutter = startNum + dim
     locator = locaterBelow(uniquepeaks, cutter)
@@ -235,7 +244,7 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
     {
       if(i==1)
       {
-        loopvector <- cicero_split(uniquepeaks[1])
+        loopvector <- cicero_split(uniquepeaks[i])
         loopvector2 <- cicero_split(uniquepeaks[locator])
         peaks.data[i,1] = loopvector[1]
         peaks.data[i,2] = loopvector[2]
@@ -244,34 +253,78 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
         cutter = cutter + dim
         locator2 = locator
         locator = locaterBelow(uniquepeaks, cutter)
+        while(locator2 == locator && i < runSize)
+        {
+          i=i+1
+          cutter = cutter + dim
+          locator = locaterBelow(uniquepeaks, cutter)
+          runSize = runSize-1
+          print("Matrix dimensions have been altered to accomidate large dimension size, results are now skewed, consider using a larger dimension")
+          
+        }
         
       }
       else if(i!=1)
       {
-        loopvector <- cicero_split(uniquepeaks[locator2])
+        
+        loopvector <- cicero_split(uniquepeaks[locator2+1])
         loopvector2 <- cicero_split(uniquepeaks[locator])
         peaks.data[i,1] = loopvector[1]
-        peaks.data[i,2] = loopvector[2]
+        peaks.data[i,2] = as.numeric(loopvector[2])
+        print(locator)
+        print(i)
+        print(runSize)
+        print(loopvector2)
         peaks.data[i,3] = loopvector2[3]
         i=i+1
         cutter = cutter + dim
         locator2 = locator
         locator = locaterBelow(uniquepeaks, cutter)
+        if(i < runSize)
+        {
+          while(locator2 == locator && i < runSize)
+          {
+            i=i+1
+            cutter = cutter + dim
+            locator = locaterBelow(uniquepeaks, cutter)
+            runSize = runSize-1
+            print("Matrix dimensions have been altered to accomidate large dimension size, results are now skewed, consider using a smaller dimension")
+            
+          }
+          
+        }
+        
         
       }
     }
     else if(i==runSize)
     {
-      loopvector <- cicero_split(uniquepeaks[locator2])
-      loopvector2 <- cicero_split(uniquepeaks[length(uniquepeaks)])
-      peaks.data[i,1] = loopvector[1]
-      peaks.data[i,2] = loopvector[2]
-      peaks.data[i,3] = loopvector2[3]
+      loopvector <- cicero_split(uniquepeaks[locator2+1])
+      loopvector2 <- cicero_split(uniquepeaks[locator])
+      
+      if(as.numeric(loopvector[2]) > endNum)
+      {
+        peaks.data[i,1] = NA
+        peaks.data[i,2] = NA
+        peaks.data[i,3] = NA
+      }
+      else if(as.numeric(loopvector[2]) <= endNum)
+      {
+        peaks.data[i,1] = loopvector[1]
+        peaks.data[i,2] = as.numeric(loopvector[2])
+        peaks.data[i,3] = endNum
+      }
       i=i+1
       
     }
     
   }
+  
+  peaks.data = na.omit(peaks.data)
+  mm <- matrix(0, runSize, runSize)
+
+  print("Built Matrix")
+  
   print("Generated new peak file")
   print(peaks.data)
   vector <- sumtoPeaks(peaks.data)

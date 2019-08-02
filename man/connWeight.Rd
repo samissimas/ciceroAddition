@@ -5,7 +5,7 @@
 \title{Create a final genome wide sorted dataframe of connections}
 \usage{
 connWeight(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
-  namesecond, thresh, changPerc, viablethresh)
+  namesecond, thresh, changePerc, viablethresh)
 }
 \arguments{
 \item{WT_cicero_cds}{the first cds you want to convert to a conns file}
@@ -22,9 +22,9 @@ connWeight(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
 
 \item{thresh}{the threshold for peaks you are interested in}
 
-\item{viablethresh}{the threshold for peaks you consider viable}
-
 \item{changePerc}{the percent difference between Ko and WT conns you want to use as a threshold}
+
+\item{viablethresh}{the threshold for peaks you consider viable}
 }
 \value{
 a completed, sorted, and eleaborated dataframe

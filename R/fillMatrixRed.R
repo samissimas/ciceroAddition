@@ -17,6 +17,7 @@ fillMatrixRed <- function(KO_conns, emptymatrix, peaksVector, thresh){
   lengthMat = dim(KO_conns)[1]
   i= 1
   startSearch = 1
+  print(peaksVector)
   while(i <= lengthMat)
   {
     if(!is.na(KO_conns[i,3]))

@@ -16,21 +16,25 @@ locaterBelow <- function(uniquepeaks, location){
   UP.data = buildDF_matrix(uniquepeaks)
   startCount = 0
   peakcutter = 1
+  
+
+  
   while(peakcutter <= length(uniquepeaks))
   {
-    if(as.numeric(UP.data[peakcutter,2])<=as.numeric(location))
+    
+    if(as.numeric(as.character(UP.data[peakcutter,2]))<=as.numeric(location))
     {
-      if(as.numeric(UP.data[peakcutter,3])>=as.numeric(location))
+      if(as.numeric(as.character(UP.data[peakcutter,3]))>=as.numeric(location))
       {
         startCount = peakcutter
         peakcutter = length(uniquepeaks) + 1
       }
-      else if(as.numeric(UP.data[peakcutter,3])<as.numeric(location))
+      else if(as.numeric(as.character(UP.data[peakcutter,3]))<as.numeric(location))
       {
         peakcutter = peakcutter + 1
       }
     }
-    else if(as.numeric(UP.data[peakcutter,2]) >= as.numeric(location))
+    else if(as.numeric(as.character(UP.data[peakcutter,2])) >= as.numeric(location))
     {
         startCount = peakcutter - 1
         peakcutter = length(uniquepeaks) + 1
