@@ -2,7 +2,7 @@
 % Please edit documentation in R/connWeight.R
 \name{connWeight}
 \alias{connWeight}
-\title{Create a final genome wide sorted dataframe of connections}
+\title{Create a conns files and then analyzes them}
 \usage{
 connWeight(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
   namesecond, thresh, changePerc, viablethresh)
@@ -30,7 +30,7 @@ connWeight(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
 a completed, sorted, and eleaborated dataframe
 }
 \description{
-Takes in a cds files and creates a conns files
+Takes in a cds files and turns them into conns files and then analyzes them with a normal weighting
 }
 \examples{
 SUM.data = connWeight(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc)

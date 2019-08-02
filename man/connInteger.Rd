@@ -2,7 +2,7 @@
 % Please edit documentation in R/connInteger.R
 \name{connInteger}
 \alias{connInteger}
-\title{Create a conns files}
+\title{Create a conns files and then analyzes them}
 \usage{
 connInteger(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
   namesecond, thresh, changePerc, viablethresh)
@@ -27,12 +27,12 @@ connInteger(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst,
 \item{viablethresh}{the threshold for peaks you consider viable}
 }
 \value{
-a blended dataframe
+a completed, sorted, and eleaborated dataframe
 }
 \description{
-Takes in a cds files and creates a conns files
+Takes in a cds files and turns them into conns files and then analyzes them with an integer weighting
 }
 \examples{
-loop.data = sortConnections(loop.data, bed)
+SUM.data = connWeight(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc)
 
 }

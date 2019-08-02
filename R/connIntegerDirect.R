@@ -1,10 +1,9 @@
-#'Create a conns files and then analyzes them
+#'Analyzes two conns files
 #'
-#'Takes in a cds files and turns them into conns files and then analyzes them with an integer weighting
+#'Takes in two conns files and analyzes them fully with integer weighting
 #'
-#' @param WT_cicero_cds the first cds you want to convert to a conns file
-#' @param KO_cicero_cds the second cds you want to convert to a conns file
-#' @param vector the vector containing which chromosones you are interested in
+#' @param WT_conns the first conns file
+#' @param KO_conns the second conns file
 #' @param mm10.chr the genome file you are referencing to create the conns files
 #' @param namefirst the label you want to give to the first conns file, i.e. "A"
 #' @param namesecond the label you want to give to the second conns file, i.e. "B"
@@ -15,27 +14,12 @@
 #' @return a completed, sorted, and eleaborated dataframe
 #'
 #' @examples
-#' SUM.data = connWeight(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changPerc)
+#' SUM.data = connWeight(WT_conns, KO_conns, namefirst, namesecond, thresh, changPerc)
 #'
 #' @export
-connInteger <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst, namesecond, thresh, changePerc, viablethresh){
+connIntegerDirect <- function(WT_conns, KO_conns, namefirst, namesecond, thresh, changePerc, viablethresh){
   
-  if(length(vector)==0)
-  {
-    print("You must have a vector with real numbers corresponding to chromosones you are interested in")
-    
-  }
-  
-  fullGenomeSorted <- data.frame()
-  
-  for(i in vector)
-  {
-    print("Creating the first conns file")
-    KO_conns = connCreator(KO_cicero_cds, i, mm10.chr)
-    
-    print("Creating the second conns file")  
-    WT_conns = connCreator(WT_cicero_cds, i, mm10.chr)
-    
+
     print("Beginning to blend conns files")
     SUMpeaks.data = connBlender(KO_conns, WT_conns, namefirst, namesecond)
     
@@ -58,9 +42,6 @@ connInteger <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirs
     SUMpeaksPreSort.data = SUMpeaksPreSort.data[,c(1,2,3,4,5,7,6,8)]
     
     SUMpeaksSorted.data <- sigPeakFinder(SUMpeaksPreSort.data, thresh, changePerc)
-    fullGenomeSorted  = rbind(fullGenomeSorted, SUMpeaksSorted.data)
-    
-  }
-  return(fullGenomeSorted)
+    return(SUMpeaksPreSort.data)
   
 }

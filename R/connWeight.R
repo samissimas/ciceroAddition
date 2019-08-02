@@ -1,6 +1,6 @@
-#'Create a final genome wide sorted dataframe of connections
+#'Create a conns files and then analyzes them
 #'
-#'Takes in a cds files and creates a conns files
+#'Takes in a cds files and turns them into conns files and then analyzes them with a normal weighting
 #'
 #' @param WT_cicero_cds the first cds you want to convert to a conns file
 #' @param KO_cicero_cds the second cds you want to convert to a conns file
@@ -61,6 +61,6 @@ connWeight <- function(WT_cicero_cds, KO_cicero_cds, vector, mm10.chr, namefirst
     fullGenomeSorted  = rbind(fullGenomeSorted, SUMpeaksSorted.data)
     
   }
-  return(result)
+  return(fullGenomeSorted)
   
 }
