@@ -155,7 +155,6 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
   
   fullLength = as.numeric(endNum) - as.numeric(startNum)
   runSize = ceiling((as.numeric(fullLength)/as.numeric(dim)))
-  print(runSize)
   ###if((locaterBelow(uniquepeaks, endNUM)-locaterBelow(uniquepeaks,startNum)) < runSize)
   ###{
   ###print("The dimension is too large. There will be empty columns and rows within the final matrix")
@@ -271,10 +270,6 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
         loopvector2 <- cicero_split(uniquepeaks[locator])
         peaks.data[i,1] = loopvector[1]
         peaks.data[i,2] = as.numeric(loopvector[2])
-        print(locator)
-        print(i)
-        print(runSize)
-        print(loopvector2)
         peaks.data[i,3] = loopvector2[3]
         i=i+1
         cutter = cutter + dim
@@ -321,7 +316,7 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
   }
   
   peaks.data = na.omit(peaks.data)
-  mm <- matrix(0, runSize, runSize)
+  mm <- matrix(0, dim(peaks.data)[1], dim(peaks.data)[1])
 
   print("Built Matrix")
   
@@ -331,7 +326,9 @@ simpleMatrixEven <- function(KO_conns, dim, thresh, startNum, endNum){
   print("Filling Matrix")
   
   finalMatrix = fillMatrixRed(KO_conns, mm, vector, thresh)
-  
+  columnnames <- peaks.data[,2]
+  colnames(finalMatrix) <- columnnames
+  rownames(finalMatrix) <- columnnames
   
   print("Cutting Matrix")
   if(startCount != 0)
